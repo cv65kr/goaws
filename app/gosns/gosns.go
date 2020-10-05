@@ -740,6 +740,8 @@ func CreateMessageBody(subs *app.Subscription, msg string, subject string, messa
 }
 
 func extractMessageFromJSON(msg string, protocol string) (string, error) {
+	msg = common.Stripslashes(msg)
+	
 	var msgWithProtocols map[string]string
 	if err := json.Unmarshal([]byte(msg), &msgWithProtocols); err != nil {
 		return "", err
